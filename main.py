@@ -1,6 +1,6 @@
 # main.py - menu de texto
 import inventory
-
+import algorithms
 
 def mostrar_todos():
     produtos = inventory.listar_ordenado()
@@ -32,26 +32,30 @@ def remover():
 
 
 def buscar():
+    lista = inventory.listar_ordenado()
     nome = input("Nome do produto: ")
-    id_produto = inventory.busca_linear(nome)
+    id_produto = algorithms.bb_invList(lista, nome)
     if id_produto is None:
         print("Não encontrado.")
     else:
         print(id_produto, inventory.inventario[id_produto])
 
+def main():
+    while True:
+        print("\n1-Adicionar  2-Remover  3-Listar  4-Buscar  0-Sair")
+        opcao = input("Opção: ")
+        if opcao == "1":
+            adicionar()
+        elif opcao == "2":
+            remover()
+        elif opcao == "3":
+            mostrar_todos()
+        elif opcao == "4":
+            buscar()
+        elif opcao == "0":
+            break
+        else:
+            print("Opção inválida.")
 
-while True:
-    print("\n1-Adicionar  2-Remover  3-Listar  4-Buscar  0-Sair")
-    opcao = input("Opção: ")
-    if opcao == "1":
-        adicionar()
-    elif opcao == "2":
-        remover()
-    elif opcao == "3":
-        mostrar_todos()
-    elif opcao == "4":
-        buscar()
-    elif opcao == "0":
-        break
-    else:
-        print("Opção inválida.")
+if __name__ == '__main__':
+    main()

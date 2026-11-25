@@ -2,6 +2,10 @@
 # algoritmos de busca linear e binária e ordenação
 
 def bb_invList(lista, nome, i=0, f=None):
+    """
+    busca auruda, binária adaptada pros nomes dentro do dict transformado
+    em lista pela função no inventory.py
+    """
     if f is None:
         nome=nome.lower()
         f = len(lista)-1
@@ -13,16 +17,16 @@ def bb_invList(lista, nome, i=0, f=None):
         return bb_invList(lista, nome, i, m-1)
 
 def busca_linear(lista, nome):
+    # busca padraozinha
     for p in lista:
         if p[1].upper() == nome.upper():
             return p[0]
     return None
 
-
-
-
 def insertion_sort(lista):
-    # ordena a lista de registros [id, nome, qtd, preco, importado] pelo nome
+    """ 
+    ordena a lista de registros [id, nome, qtd, preco, importado] pelo nome
+    """
     for i in range(1, len(lista)):
         atual = lista[i]
         j = i - 1
