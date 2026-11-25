@@ -35,3 +35,7 @@ def insertion_sort(lista):
             j -= 1
         lista[j + 1] = atual
     return lista
+
+    # merge_sort
+
+    # intercalar
