@@ -3,7 +3,7 @@
 
 def bb_invList(lista, nome, i=0, f=None):
     """
-    busca auruda, binária adaptada pros nomes dentro do dict transformado
+    busca binária adaptada para os nomes dentro do dict transformado
     em lista pela função no inventory.py
     """
     if f is None:
@@ -36,6 +36,27 @@ def insertion_sort(lista):
         lista[j + 1] = atual
     return lista
 
-    # merge_sort
+def merge_sort(lista):
+    """
+    ordena a lista de registros quando o número de elementos for maior que 100
+    """
+    if len(lista) <= 1:
+        return lista
 
-    # intercalar
+    meio = len(lista) // 2
+    esquerda = merge_sort(lista[:meio])
+    direita = merge_sort(lista[meio:])
+
+    resultado = []
+    i = j = 0
+    while i < len(esquerda) and j < len(direita):
+        if esquerda[i][1].lower() <= direita[j][1].lower():
+            resultado.append(esquerda[i])
+            i += 1
+        else:
+            resultado.append(direita[j])
+            j += 1
+
+    resultado.extend(esquerda[i:])
+    resultado.extend(direita[j:])
+    return resultado

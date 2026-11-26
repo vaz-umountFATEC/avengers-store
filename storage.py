@@ -4,7 +4,8 @@ import os
 import crypto
 import inventory
 
-ARQUIVO_INVENTARIO = "inventario.csv"
+PASTA_DO_PROGRAMA = os.path.dirname(os.path.abspath(__file__))
+ARQUIVO_INVENTARIO = os.path.join(PASTA_DO_PROGRAMA, "inventario.csv")
 SEPARADOR = ";"
 
 def arquivo_existe():
@@ -85,12 +86,16 @@ def carregar_inventario():
             importado = produto[4]
 
             # A funcao do inventory.py adiciona o produto ao dicionario.
-            foi_adicionado = inventory.adicionar_produto(
-                inventario, id_produto, nome, quantidade, preco, importado
-            )
+            # foi_adicionado = inventory.adicionar(
+            #     inventario, id_produto, nome, quantidade, preco, importado
+            # )
 
-            if foi_adicionado == False:
+            # if foi_adicionado == False:
+            #     linhas_invalidas.append(numero_linha)
+            if id_produto in inventario:
                 linhas_invalidas.append(numero_linha)
+            else:
+                inventario[id_produto] = [nome, quantidade, preco, importado]
 
     arquivo.close()
     return inventario, linhas_invalidas
